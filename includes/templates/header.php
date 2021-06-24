@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<title>Bienes Raíces</title>
 
-	<link rel="stylesheet" href="build/css/app.css" />
+	<link rel="stylesheet" href="<?php echo $rutaBuild ?>build/css/app.css" />
 </head>
 
 <body>
@@ -14,15 +14,15 @@
 		<div class="contenedor contenido-header">
 			<div class="barra">
 				<a class="logo" href="index.php">
-					<img src="build/img/logo.svg" alt="logo imagen" />
+					<img src="<?php echo $rutaBuild ?>build/img/logo.svg" alt="logo imagen" />
 				</a>
 
 				<div class="mobile-menu">
-					<img src="build/img/barras.svg" alt="imagen barras menu" />
+					<img src="<?php echo $rutaBuild ?>build/img/barras.svg" alt="imagen barras menu" />
 				</div>
 
 				<div class="derecha">
-					<img class="dark-mode-boton" src="build/img/dark-mode.svg" alt="imagen dark mode" />
+					<img class="dark-mode-boton" src="<?php echo $rutaBuild ?>build/img/dark-mode.svg" alt="imagen dark mode" />
 
 					<nav class="navegacion">
 						<a href="nosotros.php">Nosotros</a>

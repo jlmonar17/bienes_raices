@@ -1,4 +1,8 @@
 .formulario {
+    fieldset {
+        border: 1px solid $grisOscuro;
+    }
+
     legend {
         font-size: 2rem;
     }
