@@ -7,6 +7,10 @@
     font-weight: $bold;
 
     &.error {
-        background-color: red;
+        background-color: $rojo;
+    }
+
+    &.exito {
+        background-color: $verde;
     }
 }
