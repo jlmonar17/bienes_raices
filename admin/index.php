@@ -17,6 +17,8 @@ $resultado = $_GET["resultado"] ?? null;
 
     <?php if (intval($resultado) === 1) : ?>
         <p class="alert exito">Anuncio creado correctamente</p>
+    <?php elseif (intval($resultado) === 2) : ?>
+        <p class="alert exito">Anuncio actualizado correctamente</p>
     <?php endif ?>
 
     <a href="propiedades/crear.php" class="boton boton-verde">Nueva propiedad</a>
@@ -38,12 +40,12 @@ $resultado = $_GET["resultado"] ?? null;
                     <td><?php echo $propiedad["id"]; ?></td>
                     <td><?php echo $propiedad["titulo"]; ?></td>
                     <td>
-                        <img class="imagen-table" src="../imagenes/<?php echo $propiedad["imagen"]; ?>" alt="imagen propiedad">
+                        <img class="imagen-table" src="../imagenes/<?php echo $propiedad["imagen"]; ?>">
                     </td>
                     <td>$ <?php echo $propiedad["precio"]; ?></td>
                     <td>
                         <a href="#" class="boton-rojo-block">Eliminar</a>
-                        <a href="#" class="boton-amarillo-block">Actualizar</a>
+                        <a href="propiedades/actualizar.php?id=<?php echo  $propiedad["id"]; ?>" class="boton-amarillo-block">Actualizar</a>
                     </td>
                 </tr>
             <?php endwhile ?>
