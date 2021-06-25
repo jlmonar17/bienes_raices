@@ -71,8 +71,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     if (empty($errores)) {
-        $query = "INSERT INTO propiedades(titulo, precio, descripcion, habitaciones, wc,  estacionamiento, creado, vendedorId) " .
-            "VALUES ('$titulo', $precio, '$descripcion', $habitaciones, $wc, $estacionamiento, '$fecha', $vendedorId)";
+        /* Subida de archivos */
+
+        /* Crear carpeta */
+        $carpetaImagenes = "../../imagenes/";
+
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes);
+        }
+
+        /* Genero nombre aleatorio */
+        $nombreImagen = md5(uniqid(rand(), true));
+
+        /* Subir archivo */
+        move_uploaded_file($imagen["tmp_name"], $carpetaImagenes . $nombreImagen);
+
+        $query = "INSERT INTO propiedades(titulo, precio, imagen, descripcion, habitaciones, wc,  estacionamiento, creado, vendedorId) " .
+            "VALUES ('$titulo', $precio, '$nombreImagen', '$descripcion', $habitaciones, $wc, $estacionamiento, '$fecha', $vendedorId)";
 
         $resultado = mysqli_query($db, $query);
 
