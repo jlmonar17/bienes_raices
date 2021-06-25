@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         /* Genero nombre aleatorio */
-        $nombreImagen = md5(uniqid(rand(), true));
+        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
         /* Subir archivo */
         move_uploaded_file($imagen["tmp_name"], $carpetaImagenes . $nombreImagen);
