@@ -1,4 +1,11 @@
 <?php
+require "../../includes/funciones.php";
+
+$auth = estaAutenticado();
+
+if (!$auth) {
+    header("Location: ../../");
+}
 
 // Validar el id.
 $id = $_GET["id"];
@@ -11,7 +18,6 @@ if (!$id) {
 require "../../includes/config/database.php";
 $db = conectarDB();
 
-require "../../includes/funciones.php";
 incluirTemplate("header", false, "../../");
 
 // Obtengo los datos de la propiedad.

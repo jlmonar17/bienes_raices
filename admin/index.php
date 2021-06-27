@@ -1,4 +1,13 @@
 <?php
+
+require "../includes/funciones.php";
+
+$auth = estaAutenticado();
+
+if (!$auth) {
+    header("Location: ../");
+}
+
 require "../includes/config/database.php";
 $db = conectarDB();
 
@@ -6,7 +15,6 @@ $query = "SELECT * FROM propiedades;";
 
 $resultadoConsulta = mysqli_query($db, $query);
 
-require "../includes/funciones.php";
 incluirTemplate("header", false, "../");
 
 /* Eliminar propiedad */
