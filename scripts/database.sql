@@ -64,4 +64,12 @@ INSERT INTO `bienes_raices`.`vendedores` (`id`, `nombre`, `apellido`, `telefono`
 
 COMMIT;
 
-
+-- -----------------------------------------------------
+-- Data for table `bienes_raices`.`usuarios`
+-- -----------------------------------------------------
+CREATE TABLE usuarios (
+  id INT(1) NOT NULL AUTO_INCREMENT,
+  email VARCHAR(60) NOT NULL,
+  password CHAR(60) NOT NULL,
+  PRIMARY KEY(id)
+);
