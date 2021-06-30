@@ -1,0 +1,16 @@
+{
+    "name": "jose/bienes_raices",
+    "description": "Sitio Web de Venta de Bienes Raices",
+    "authors": [
+        {
+            "name": "José Monar",
+            "email": "jl_mj_17@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "./classes"
+        }
+    }
+}
