@@ -32,12 +32,12 @@ $auth = $_SESSION["login"] ?? false;
 					<img class="dark-mode-boton" src="<?php echo $rutaBuild ?>build/img/dark-mode.svg" alt="imagen dark mode" />
 
 					<nav class="navegacion">
-						<a href="nosotros.php">Nosotros</a>
-						<a href="anuncios.php">Anuncios</a>
-						<a href="blog.php">Blog</a>
-						<a href="contacto.php">Contacto</a>
+						<a href="/curso_desarrollo_web_completo/bienes_raices/nosotros.php">Nosotros</a>
+						<a href="/curso_desarrollo_web_completo/bienes_raices/anuncios.php">Anuncios</a>
+						<a href="/curso_desarrollo_web_completo/bienes_raices/blog.php">Blog</a>
+						<a href="/curso_desarrollo_web_completo/bienes_raices/contacto.php">Contacto</a>
 						<?php if ($auth) : ?>
-							<a href="cerrar-sesion.php">Cerrar Sesión</a>
+							<a href="/curso_desarrollo_web_completo/bienes_raices/cerrar-sesion.php">Cerrar Sesión</a>
 						<?php endif; ?>
 					</nav>
 				</div>

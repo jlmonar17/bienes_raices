@@ -1,14 +1,9 @@
 <?php
 
-require "../includes/funciones.php";
+require "../includes/app.php";
 
-$auth = estaAutenticado();
+estaAutenticado();
 
-if (!$auth) {
-    header("Location: ../");
-}
-
-require "../includes/config/database.php";
 $db = conectarDB();
 
 $query = "SELECT * FROM propiedades;";

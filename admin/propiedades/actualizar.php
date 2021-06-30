@@ -1,11 +1,7 @@
 <?php
-require "../../includes/funciones.php";
+require "../../includes/app.php";
 
-$auth = estaAutenticado();
-
-if (!$auth) {
-    header("Location: ../../");
-}
+estaAutenticado();
 
 // Validar el id.
 $id = $_GET["id"];
@@ -15,7 +11,6 @@ if (!$id) {
     header("Location: ../index.php");
 }
 
-require "../../includes/config/database.php";
 $db = conectarDB();
 
 incluirTemplate("header", false, "../../");
