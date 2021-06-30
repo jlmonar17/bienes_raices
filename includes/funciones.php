@@ -2,6 +2,7 @@
 
 define('TEMPLATES_URL', __DIR__ . '/templates');
 define('FUNCIONES_URL', __DIR__ . '/funciones.php');
+define('IMAGENES_URL', __DIR__ . '/../imagenes/');
 
 function incluirTemplate(string $nombre, bool $inicio = false, string $rutaBuild = "")
 {
