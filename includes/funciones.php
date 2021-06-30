@@ -26,3 +26,8 @@ function debuguear($variable)
 
     exit;
 }
+
+function sanitizar($html)
+{
+    return htmlspecialchars($html);
+}
