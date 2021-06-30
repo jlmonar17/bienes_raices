@@ -134,6 +134,42 @@ class Propiedad
         }
     }
 
+    public static function all(): array
+    {
+        $query = "SELECT * FROM propiedades";
+
+        $resultado = self::consultarSQL($query);
+
+        return $resultado;
+    }
+
+    protected static function consultarSQL(string $query): array
+    {
+        $resultado = self::$db->query($query);
+
+        $arrayObjetos = [];
+        while ($registro = $resultado->fetch_assoc()) {
+            $arrayObjetos[] = self::crearObjeto($registro);
+        }
+
+        $resultado->free();
+
+        return $arrayObjetos;
+    }
+
+    protected static function crearObjeto(array $registro): Propiedad
+    {
+        $objeto = new self;
+
+        foreach ($registro as $key => $value) {
+            if (property_exists($objeto, $key)) {
+                $objeto->$key = $value;
+            }
+        }
+
+        return $objeto;
+    }
+
     public static function setDB($database)
     {
         self::$db = $database;
