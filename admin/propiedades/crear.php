@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <main class="contenedor seccion">
-    <h1>Crear</h1>
+    <h1>Nueva Propiedad</h1>
 
     <a href="../index.php" class="boton boton-verde">Volver</a>
 
