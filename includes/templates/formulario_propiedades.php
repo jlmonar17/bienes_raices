@@ -2,29 +2,32 @@
 	<legend>Información general</legend>
 
 	<label for="titulo">Titulo:</label>
-	<input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad" value="<?php echo sanitizar($propiedad->titulo) ?>">
+	<input type="text" id="titulo" name="propiedad[titulo]" placeholder="Titulo Propiedad" value="<?php echo sanitizar($propiedad->titulo) ?>">
 
 	<label for="precio">Precio:</label>
-	<input type="number" id="precio" name="precio" placeholder="Precio propiedad" value="<?php echo sanitizar($propiedad->precio) ?>">
+	<input type="number" id="precio" name="propiedad[precio]" placeholder="Precio propiedad" value="<?php echo sanitizar($propiedad->precio) ?>">
 
 	<label for="imagen">Imagen:</label>
-	<input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
+	<input type="file" id="imagen" name="propiedad[imagen]" accept="image/jpeg, image/png">
+	<?php if ($propiedad->imagen) : ?>
+		<img src="../../imagenes/<?php echo $propiedad->imagen; ?>" class="imagen-small">
+	<?php endif ?>
 
 	<label for="descripcion">Descripcion:</label>
-	<textarea id="descripcion" name="descripcion" placeholder="Descripción de la propiedad"><?php echo sanitizar($propiedad->descripcion) ?></textarea>
+	<textarea id="descripcion" name="propiedad[descripcion]" placeholder="Descripción de la propiedad"><?php echo sanitizar($propiedad->descripcion) ?></textarea>
 </fieldset>
 
 <fieldset>
 	<legend>Información Propiedad</legend>
 
 	<label for="habitaciones">Habitaciones:</label>
-	<input id="habitaciones" name="habitaciones" type="number" min="1" max="9" placeholder="Ej 3" value="<?php echo sanitizar($propiedad->habitaciones) ?>">
+	<input id="habitaciones" name="propiedad[habitaciones]" type="number" min="1" max="9" placeholder="Ej 3" value="<?php echo sanitizar($propiedad->habitaciones) ?>">
 
 	<label for="wc">Baños:</label>
-	<input id="wc" type="number" name="wc" min="1" max="9" placeholder="Ej 3" value="<?php echo sanitizar($propiedad->wc) ?>">
+	<input id="wc" type="number" name="propiedad[wc]" min="1" max="9" placeholder="Ej 3" value="<?php echo sanitizar($propiedad->wc) ?>">
 
 	<label for="estacionamiento">Estacionamiento:</label>
-	<input id="estacionamiento" name="estacionamiento" type="number" min="1" max="9" placeholder="Ej 3" value="<?php echo sanitizar($propiedad->estacionamiento) ?>">
+	<input id="estacionamiento" name="propiedad[estacionamiento]" type="number" min="1" max="9" placeholder="Ej 3" value="<?php echo sanitizar($propiedad->estacionamiento) ?>">
 </fieldset>
 
 <fieldset>

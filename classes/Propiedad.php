@@ -38,6 +38,17 @@ class Propiedad
 
     public function guardar()
     {
+        if ($this->id !== "") {
+            // Actualizar
+            return $this->actualizar();
+        } else {
+            // Crear
+            return $this->crear();
+        }
+    }
+
+    public function crear()
+    {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
 
@@ -49,6 +60,27 @@ class Propiedad
         $query .= ") VALUES ('";
         $query .= $valuesInsert;
         $query .= "')";
+
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+    }
+
+    public function actualizar()
+    {
+        $atributos = $this->sanitizarAtributos();
+
+        $valores = [];
+        foreach ($atributos as $key => $value) {
+            $valores[] = "$key='$value'";
+        }
+
+        $campos = join(", ", $valores);
+
+        $query = "UPDATE propiedades set ";
+        $query .= $campos;
+        $query .= " WHERE id='" . self::$db->escape_string($this->id) . "' LIMIT 1";
+
 
         $resultado = self::$db->query($query);
 
@@ -68,7 +100,7 @@ class Propiedad
         return $atributos;
     }
 
-    public function sanitizarAtributos()
+    public function sanitizarAtributos(): array
     {
         $atributos = $this->atributos();
         $sanitizados = [];
@@ -129,6 +161,16 @@ class Propiedad
 
     public function setImagen($imagen)
     {
+        // Si la propiedad tiene id, entonces se está actualizando una propiedad
+        // por lo tanto, debemos remover la imagen previa.
+        if (isset($this->id)) {
+            $existeImagen = file_exists(IMAGENES_URL . $this->imagen);
+
+            if ($existeImagen) {
+                unlink(IMAGENES_URL . $this->imagen);
+            }
+        }
+
         if ($imagen) {
             $this->imagen = $imagen;
         }
@@ -168,6 +210,24 @@ class Propiedad
         }
 
         return $objeto;
+    }
+
+    public static function find($id)
+    {
+        $query = "SELECT * FROM propiedades where id='" . self::$db->escape_string($id) . "'";
+
+        $resultado = self::consultarSQL($query);
+
+        return array_shift($resultado);
+    }
+
+    public function sincronizar($args = [])
+    {
+        foreach ($args as $key => $value) {
+            if (property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
     }
 
     public static function setDB($database)

@@ -19,14 +19,14 @@ $errores = Propiedad::getErrores();
 $propiedad = new Propiedad();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $propiedad = new Propiedad($_POST);
+    $propiedad = new Propiedad($_POST["propiedad"]);
 
     /* Genero nombre único para la imagen */
     $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
     /* Resize de la imagen si es que el usuario seleccionó imagen */
-    if ($_FILES["imagen"]["tmp_name"]) {
-        $imagen = ImageManagerStatic::make($_FILES["imagen"]["tmp_name"])->fit(800, 600);
+    if ($_FILES["propiedad"]["tmp_name"]["imagen"]) {
+        $imagen = ImageManagerStatic::make($_FILES["propiedad"]["tmp_name"]["imagen"])->fit(800, 600);
         $propiedad->setImagen($nombreImagen);
     }
 
