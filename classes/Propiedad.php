@@ -24,7 +24,7 @@ class Propiedad
 
     public function __construct($args = [])
     {
-        $this->id = $args["id"] ?? "";
+        $this->id = $args["id"] ?? null;
         $this->titulo = $args["titulo"] ?? "";
         $this->precio = $args["precio"] ?? "";
         $this->imagen = $args["imagen"] ?? "";
@@ -38,7 +38,7 @@ class Propiedad
 
     public function guardar()
     {
-        if ($this->id !== "") {
+        if (!is_null($this->id)) {
             // Actualizar
             return $this->actualizar();
         } else {
@@ -82,6 +82,15 @@ class Propiedad
         $query .= " WHERE id='" . self::$db->escape_string($this->id) . "' LIMIT 1";
 
 
+        $resultado = self::$db->query($query);
+
+        return $resultado;
+    }
+
+    public function eliminar()
+    {
+        // Elimino la propiedad
+        $query = "DELETE FROM propiedades WHERE id=" . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
 
         return $resultado;
@@ -163,16 +172,21 @@ class Propiedad
     {
         // Si la propiedad tiene id, entonces se está actualizando una propiedad
         // por lo tanto, debemos remover la imagen previa.
-        if (isset($this->id)) {
-            $existeImagen = file_exists(IMAGENES_URL . $this->imagen);
-
-            if ($existeImagen) {
-                unlink(IMAGENES_URL . $this->imagen);
-            }
+        if (!is_null($this->id)) {
+            $this->borrarImagen();
         }
 
         if ($imagen) {
             $this->imagen = $imagen;
+        }
+    }
+
+    public function borrarImagen()
+    {
+        $existeImagen = file_exists(IMAGENES_URL . $this->imagen);
+
+        if ($existeImagen) {
+            unlink(IMAGENES_URL . $this->imagen);
         }
     }
 

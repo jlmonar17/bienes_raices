@@ -17,18 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
     if ($id) {
-        /* Elimino imagen primero */
-        $queryPropiedad = "SELECT * FROM propiedades WHERE id=$id";
-        $resultadoPropiedad = mysqli_query($db, $queryPropiedad);
-        $propiedad = mysqli_fetch_assoc($resultadoPropiedad);
+        $propiedad = Propiedad::find($id);
 
-        unlink("../imagenes/" . $propiedad["imagen"]);
+        $resultado = $propiedad->eliminar();
 
-        /* Elimino el registro de la base de datos */
-        $queryPropiedadEliminar = "DELETE FROM propiedades WHERE id=$id";
-        $resultadoPropiedadEliminar = mysqli_query($db, $queryPropiedadEliminar);
+        if ($resultado) {
+            $propiedad->borrarImagen();
 
-        if ($resultadoPropiedadEliminar) {
             header("Location: ../admin?resultado=3");
         }
     }
