@@ -2,17 +2,15 @@
 require "../../includes/app.php";
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic;
 
 estaAutenticado();
 
-$db = conectarDB();
-
 incluirTemplate("header", false, "../../");
 
-// Data para el select de vendedores
-$queryVendedores = "SELECT * FROM vendedores";
-$vendedores = mysqli_query($db, $queryVendedores);
+/* Obtengo todos los vendedores */
+$vendedores = Vendedor::all();
 
 $errores = Propiedad::getErrores();
 

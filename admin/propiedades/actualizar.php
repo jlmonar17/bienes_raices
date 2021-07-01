@@ -2,6 +2,7 @@
 require "../../includes/app.php";
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic;
 
 estaAutenticado();
@@ -14,16 +15,13 @@ if (!$id) {
     header("Location: ../index.php");
 }
 
-$db = conectarDB();
-
 incluirTemplate("header", false, "../../");
 
 // Obtengo los datos de la propiedad.
 $propiedad = Propiedad::find($id);
 
 // Data para el select de vendedores
-$queryVendedores = "SELECT * FROM vendedores";
-$vendedores = mysqli_query($db, $queryVendedores);
+$vendedores = Vendedor::all();
 
 $errores = [];
 
