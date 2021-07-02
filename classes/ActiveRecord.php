@@ -145,6 +145,20 @@ class ActiveRecord
         return $resultado;
     }
 
+    /**
+     * Obtiene cierta cantidad de registros
+     *
+     * @param int $cantidad
+     */
+    public static function get($cantidad): array
+    {
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT " . $cantidad;
+
+        $resultado = self::consultarSQL($query);
+
+        return $resultado;
+    }
+
     protected static function consultarSQL(string $query): array
     {
         $resultado = self::$db->query($query);
